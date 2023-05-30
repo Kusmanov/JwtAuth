@@ -1,23 +1,17 @@
 package com.example.JwtAuth.user.api;
 
+import java.util.Date;
+
 public class AuthResponse {
-    private String email;
     private String accessToken;
+    private Date accessTokenExpirationDate;
 
     public AuthResponse() {
     }
 
-    public AuthResponse(String email, String accessToken) {
-        this.email = email;
+    public AuthResponse(String accessToken, Date accessTokenExpirationDate) {
         this.accessToken = accessToken;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        this.accessTokenExpirationDate = accessTokenExpirationDate;
     }
 
     public String getAccessToken() {
@@ -27,5 +21,14 @@ public class AuthResponse {
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
+
+    public Date getAccessTokenExpirationDate() {
+        return accessTokenExpirationDate;
+    }
+
+    public void setAccessTokenExpirationDate(Date accessTokenExpirationDate) {
+        this.accessTokenExpirationDate = accessTokenExpirationDate;
+    }
+
 }
 

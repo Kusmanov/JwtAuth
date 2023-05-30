@@ -1,4 +1,4 @@
-package com.example.JwtAuth;
+package com.example.JwtAuth.security;
 
 import com.example.JwtAuth.jwt.JwtTokenFilter;
 import com.example.JwtAuth.user.UserRepository;
@@ -53,12 +53,10 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
         http.exceptionHandling()
                 .authenticationEntryPoint(
-                        (request, response, ex) -> {
-                            response.sendError(
-                                    HttpServletResponse.SC_UNAUTHORIZED,
-                                    ex.getMessage()
-                            );
-                        }
+                        (request, response, ex) -> response.sendError(
+                                HttpServletResponse.SC_UNAUTHORIZED,
+                                ex.getMessage()
+                        )
                 );
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

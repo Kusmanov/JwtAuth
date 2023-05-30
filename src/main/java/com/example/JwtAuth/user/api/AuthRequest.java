@@ -11,8 +11,10 @@ public class AuthRequest {
     @Length(min = 5, max = 50)
     private String email;
     @NotNull
-    @Length(min = 5, max = 10)
+    @Length(min = 8, max = 16)
     private String password;
+    @NotNull
+    private boolean locked;
 
     public String getEmail() {
         return email;
@@ -29,5 +31,12 @@ public class AuthRequest {
     public void setPassword(String password) {
         this.password = password;
     }
-}
 
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+}

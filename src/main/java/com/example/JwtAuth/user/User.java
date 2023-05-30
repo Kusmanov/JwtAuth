@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Entity
@@ -16,13 +17,19 @@ public class User implements UserDetails {
     private String email;
     @Column(nullable = false, length = 64)
     private String password;
+    @Column(columnDefinition = "boolean default false")
+    @NotNull
+    private boolean locked;
+    @Column(nullable = false, length = 8)
+    private String scope;
 
     public User() {
     }
 
-    public User(String email, String password) {
+    public User(String email, String password, String scope) {
         this.email = email;
         this.password = password;
+        this.scope = scope;
     }
 
     public Integer getId() {
@@ -49,6 +56,22 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -66,7 +89,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !locked;
     }
 
     @Override
@@ -79,4 +102,3 @@ public class User implements UserDetails {
         return true;
     }
 }
-
