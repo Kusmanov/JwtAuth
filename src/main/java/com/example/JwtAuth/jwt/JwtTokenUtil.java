@@ -21,7 +21,7 @@ public class JwtTokenUtil {
         return Jwts.builder()
                 .setSubject(String.format("%s,%s", user.getId(), user.getEmail()))
                 .claim("userScope", user.getScope())
-                .setIssuer("AerobicGymnastics")
+                .setIssuer("AerobicGymnastics.kz")
                 .setIssuedAt(new Date())
                 .setExpiration(expirationDate = new Date(System.currentTimeMillis() + EXPIRE_DURATION))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
