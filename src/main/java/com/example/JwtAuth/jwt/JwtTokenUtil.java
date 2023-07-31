@@ -20,7 +20,8 @@ public class JwtTokenUtil {
     public String generateAccessToken(User user) {
         return Jwts.builder()
                 .setSubject(String.format("%s,%s", user.getId(), user.getEmail()))
-                .setIssuer("CodeJava")
+                .claim("userScope", user.getScope())
+                .setIssuer("AerobicGymnastics")
                 .setIssuedAt(new Date())
                 .setExpiration(expirationDate = new Date(System.currentTimeMillis() + EXPIRE_DURATION))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
